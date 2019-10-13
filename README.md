@@ -1,4 +1,5 @@
-Test case for API https://gorest.co.in
+API test case: 
+https://gorest.co.in
 
 Default steps:
 1. POST
