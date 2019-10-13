@@ -1,29 +1,11 @@
 import requests
-import random
 import json
 
 
 class TestApi:
 
-    def post_api(self):
+    def post_api(self, data, header):
         url = "https://gorest.co.in/public-api/users"
-        header = {
-                  "Content-Type": "application/json",
-                  "Authorization": "Bearer TBi_Y27sxJ9XsBBmRgkb-oXSpjbWUdsotju1",
-                  "Accept": "application/json"
-        }
-        data = {
-                "first_name": "Johny Z",
-                "last_name": "Rocket",
-                "gender": "male",
-                "dob": "1970-08-12",
-                "email": f'j_z_{str(random.randint(0, 10000))}@mail.kz',
-                "phone": "+165776577",
-                "website": "https://bit.ly/IqT6zt",
-                "address": "Platform 3/4 end of rainbow street",
-                "status": "active"
-        }
-
         response = requests.post(url, headers=header, json=data)
 
         global user_id
@@ -45,13 +27,7 @@ class TestApi:
 
         return response_code
 
-    def delete_api(self):
-        header = {
-                  "Content-Type": "application/json",
-                  "Authorization": "Bearer TBi_Y27sxJ9XsBBmRgkb-oXSpjbWUdsotju1",
-                  "Accept": "application/json"
-        }
-
+    def delete_api(self, header):
         url = f'https://gorest.co.in/public-api/users/{user_id}'
         response = requests.delete(url, headers=header)
 
