@@ -1,1 +1,0 @@
-{"first_name": "Johny Z", "last_name": "Rocket", "gender": "male", "dob": "1970-08-12", "email": "j_z_77@mail.kz", "phone": "+165776577", "website": "https://bit.ly/IqT6zt", "address": "Platform 3/4 end of rainbow street", "status": "active"}
