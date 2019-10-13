@@ -1,4 +1,4 @@
-API test case: 
+REST API test case: 
 https://gorest.co.in
 
 Default steps:
