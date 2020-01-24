@@ -12,7 +12,7 @@ def test_case():
     test1 = ApiHelper()
     try:
         print(f'\n-- Test POST-GET-DELETE-GET started --')
-        assert test1.post_api(read_file('data.json'), read_file('header.json')) == '200'
+        assert test1.post_api(read_file('header.json')) == '200'
         assert test1.get_api() == '200'
         assert test1.delete_api(read_file('header.json')) == '204'
         assert test1.get_api() == '404'
