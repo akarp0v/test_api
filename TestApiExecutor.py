@@ -15,10 +15,10 @@ def test_1():
         assert test1.get_api() == '200'
         assert test1.delete_api(read_file('header.json')) == '204'
         assert test1.get_api() == '404'
-        print('\n-- Test POST-GET-DELETE-GET finished --\n')
+        print('\n-- Test POST-GET-DELETE-GET finished --')
 
     except OSError:
-        print('\n-- Test POST-GET-DELETE-GET failed --\n')
+        print('\n-- Test POST-GET-DELETE-GET failed --')
 
 
 def test_2():
@@ -30,7 +30,7 @@ def test_2():
         assert test2.get_api() == '200'
         assert test2.delete_api(read_file('header.json')) == '204'
         assert test2.get_api() == '404'
-        print('\n-- Test POST-PUT-GET-DELETE-GET finished --\n')
+        print('\n-- Test POST-PUT-GET-DELETE-GET finished --')
 
     except OSError:
-        print('\n-- Test POST-PUT-GET-DELETE-GET failed --\n')
+        print('\n-- Test POST-PUT-GET-DELETE-GET failed --')
