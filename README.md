@@ -19,10 +19,13 @@ Test #2
 
 Docker
 ---
-build image:
+build image locally:
 $ docker build -t api-tests .
 
-run:
+run locally:
 $ docker run api-tests
+
+run from docker hub:
+$ docker run sen10rqa/api-tests
 
 https://hub.docker.com/repository/docker/sen10rqa/api-tests
