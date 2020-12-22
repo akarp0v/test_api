@@ -1,7 +1,8 @@
-REST API tests: 
-https://gorest.co.in
+Python REST API test farmework
 
-run tests:
+REST API: https://gorest.co.in
+
+run:
 $ pytest -v
 ---
 Test #1
