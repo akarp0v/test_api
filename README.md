@@ -1,6 +1,9 @@
-REST API test case: 
+REST API tests: 
 https://gorest.co.in
 
+run tests:
+$ pytest -v
+---
 Test #1
 1. POST
 2. GET
@@ -14,5 +17,4 @@ Test #2
 4. DELETE
 5. GET
 
-Execute command example:
-$ pytest -s -v TestApiExecutor.py
+

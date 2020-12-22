@@ -1,50 +1,46 @@
 import requests
-from pprint import pprint
-import json
-from GenerateData import GenerateData
+from users import User
+
+
+def read_token(path):
+    with open(path) as file:
+        return file.readline().strip()
+
+
+def get_header():
+    return {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {read_token('token.txt')}"
+    }
 
 
 class ApiHelper:
-    user_id = ''
-    cont_type = 'json'
-    token = 'TBi_Y27sxJ9XsBBmRgkb-oXSpjbWUdsotju1'
-    gen = GenerateData()
+    user = User()
 
-    def post_api(self, header):
+    def post_api(self):
         url = "https://gorest.co.in/public-api/users"
-        data = self.gen.data()
-        response = requests.post(url, headers=header, json=data)
-        self.user_id = json.dumps(response.json()['result']['id']).replace('"', '').rstrip('\n')
-        response_code = json.dumps(response.json()['_meta']['code'])
-        print(f'POST response for ID #{self.user_id} -> {response_code}')
-        # pprint(data)
+        req_data = self.user.info()
+        response = requests.post(url, headers=get_header(), json=req_data)
+        self.user.id = response.json()['data']['id']
 
-        return response_code
+        return response.json()['code']
 
     def put_api(self):
-        url = f'https://gorest.co.in/public-api/users/' \
-              f'{self.user_id}?_format={self.cont_type}&access-token={self.token}'
-        data = self.gen.data()
-        response = requests.put(url, data)
-        response_code = json.dumps(response.json()['_meta']['code'])
-        print(f'PUT response for ID #{self.user_id} -> {response_code}')
-        # pprint(data)
+        url = f'https://gorest.co.in/public-api/users/{self.user.id}'
+        req_data = self.user.info()
+        response = requests.put(url, headers=get_header(), json=req_data)
 
-        return response_code
+        return response.json()['code']
 
     def get_api(self):
-        url = f'https://gorest.co.in/public-api/users/' \
-              f'{self.user_id}?_format={self.cont_type}&access-token={self.token}'
-        response = requests.get(url)
-        response_code = json.dumps(response.json()['_meta']['code'])
-        print(f'GET response for ID #{self.user_id} -> {response_code}')
+        url = f'https://gorest.co.in/public-api/users/{self.user.id}'
+        response = requests.get(url, headers=get_header())
 
-        return response_code
+        return response.json()['code']
 
-    def delete_api(self, header):
-        url = f'https://gorest.co.in/public-api/users/{self.user_id}'
-        response = requests.delete(url, headers=header)
-        response_code = json.dumps(response.json()['_meta']['code'])
-        print(f'DELETE response for ID #{self.user_id} -> {response_code}')
+    def delete_api(self):
+        url = f'https://gorest.co.in/public-api/users/{self.user.id}'
+        response = requests.delete(url, headers=get_header())
 
-        return response_code
+        return response.json()['code']
