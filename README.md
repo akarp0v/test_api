@@ -17,4 +17,10 @@ Test #2
 4. DELETE
 5. GET
 
+Docker
+---
+build image:
+$ docker build -t api-tests .
 
+run:
+$ docker run api-tests
