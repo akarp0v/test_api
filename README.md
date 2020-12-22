@@ -1,4 +1,4 @@
-Python REST API test farmework
+Python REST API test framework
 
 REST API: https://gorest.co.in
 
