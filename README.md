@@ -24,3 +24,5 @@ $ docker build -t api-tests .
 
 run:
 $ docker run api-tests
+
+https://hub.docker.com/repository/docker/sen10rqa/api-tests
