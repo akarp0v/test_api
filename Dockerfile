@@ -6,6 +6,6 @@ COPY gorest gorest/
 
 COPY test_api.py requirements.txt ./
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 CMD ["pytest", "-v"]
