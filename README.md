@@ -26,7 +26,7 @@ $ docker build -t api-tests .
 run locally:
 $ docker run api-tests
 
-run from docker hub:
+run docker hub image:
 $ docker run sen10rqa/api-tests
 
 https://hub.docker.com/repository/docker/sen10rqa/api-tests
