@@ -10,5 +10,6 @@ class User:
     gender = "Male"
     status = "Active"
 
-    def info(self) -> dict:
-        return {"name": self.name, "gender": self.gender, "email": self.email, "status": self.status}
+    @staticmethod
+    def info():
+        return User()
