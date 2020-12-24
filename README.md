@@ -23,6 +23,7 @@ Docker
 ---
 pytest version:
 `docker run sen10rqa/api-tests`
+
 allure version:
 `docker run -it -p 38077:38077 sen10rqa/api-tests-allure`
 
