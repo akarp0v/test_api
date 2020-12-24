@@ -28,10 +28,12 @@ Docker
 
 **Build Docker container instruction:**
 
-- clone git repository: `git clone https://github.com/akarp0v/test_api.git`
+1. clone git repository: `git clone https://github.com/akarp0v/test_api.git`
 
-- build image:
-`docker build -t api-tests .`
+2. build image:
+`docker build -t api-tests-allure .`
 
-- run:
-`docker run api-tests`
+3. run:
+`docker run -it -p 38077:38077 api-tests-allure`
+
+4. [check Allure dashboard](http://localhost:38077/index.html)

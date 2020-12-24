@@ -6,12 +6,27 @@ COPY gorest gorest/
 
 COPY test_api.py requirements.txt ./
 
+RUN mkdir allure_reports
+
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+RUN apt-get update \
+    && apt-get install --yes wget \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN brew install allure
+RUN apt-get update \
+    # TODO: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
+    && mkdir -p /usr/share/man/man1 \
+    # Download and install allure
+    && wget https://github.com/allure-framework/allure2/releases/download/2.13.8/allure_2.13.8-1_all.deb \
+    # Ignore dpkg error
+    && dpkg -i allure_2.13.8-1_all.deb || true \
+    && apt-get install -f --yes \
+    && rm allure_2.13.8-1_all.deb \
+    && rm -rf /var/lib/apt/lists/*
 
-CMD ["pytest", "-v", "--alluredir=allure_reports/"]
+COPY ./entrypoint.sh /
 
-CMD ["allure", "serve", "allure_reports/"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD allure serve /test-api/allure_reports/ --port 38077
