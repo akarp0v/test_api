@@ -1,26 +1,36 @@
-Python REST API test framework
-
-REST API: https://gorest.co.in
-
-run:
-$ pytest -v
+Python [REST API](https://gorest.co.in) test framework
 
 Test steps:
-1. POST
-2. PUT
-3. PATCH
-4. DELETE
+1. POST request
+2. PUT request
+3. PATCH request
+4. DELETE request
+
+Pytest
+---
+
+`pytest -v`
+
+Allure
+---
+
+`pytest -v --alluredir=allure_reports/`
+`allure serve allure_reports/`
+
 
 Docker
 ---
-run:
-$ docker run sen10rqa/api-tests
 
-repository: 
-https://hub.docker.com/repository/docker/sen10rqa/api-tests
+`docker run sen10rqa/api-tests`
 
-build image locally:
-$ docker build -t api-tests .
+[Repository link](https://hub.docker.com/repository/docker/sen10rqa/api-tests)
 
-run locally:
-$ docker run api-tests
+**Build Docker container instruction:**
+
+- clone git repository: `git clone https://github.com/akarp0v/test_api.git`
+
+- build image:
+`docker build -t api-tests .`
+
+- run:
+`docker run api-tests`
