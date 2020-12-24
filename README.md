@@ -24,7 +24,7 @@ Docker
 
 `docker run sen10rqa/api-tests`
 
-[Repository link](https://hub.docker.com/repository/docker/sen10rqa/api-tests)
+[Docker repository link](https://hub.docker.com/repository/docker/sen10rqa/api-tests)
 
 **Build Docker container instruction:**
 
