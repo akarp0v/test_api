@@ -21,10 +21,14 @@ Allure
 
 Docker
 ---
-
+pytest version:
 `docker run sen10rqa/api-tests`
+allure version:
+`docker run -it -p 38077:38077 sen10rqa/api-tests-allure`
 
-[Docker repository link](https://hub.docker.com/repository/docker/sen10rqa/api-tests)
+[Pytest version link](https://hub.docker.com/repository/docker/sen10rqa/api-tests)
+
+[Allure version link](https://hub.docker.com/repository/docker/sen10rqa/api-tests-allure)
 
 **Build Docker container instruction:**
 
