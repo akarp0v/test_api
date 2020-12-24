@@ -8,4 +8,6 @@ COPY test_api.py requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["pytest", "-v"]
+CMD ["pytest", "-v", "--alluredir=allure_reports/"]
+
+CMD ["allure", "serve", "allure_reports/"]
