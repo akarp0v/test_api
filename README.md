@@ -29,6 +29,8 @@ run Allure version:
 
 >[Check Allure dashboard](http://localhost:38077/index.html)
 
+**Docker Hub repository:**
+
 [Pytest version link](https://hub.docker.com/repository/docker/sen10rqa/api-tests)
 
 [Allure version link](https://hub.docker.com/repository/docker/sen10rqa/api-tests-allure)
