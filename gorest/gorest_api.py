@@ -9,7 +9,7 @@ base_url = 'https://gorest.co.in/public-api/users/'
 class GoRestApi:
     header = h.get_header()
 
-    @allure.step('Create user record - POST')
+    @allure.step('POST - create API user record')
     def post(self, user) -> int:
         url = base_url
         req_data = {
@@ -23,7 +23,7 @@ class GoRestApi:
 
         return response.json()['data']['id']
 
-    @allure.step('Change user name - PUT')
+    @allure.step('PUT - change API user name')
     def put(self, user) -> dict:
         url = f'{base_url}{user.id}'
         req_data = {
@@ -37,7 +37,7 @@ class GoRestApi:
 
         return response.json()
 
-    @allure.step('Change user email - PATCH')
+    @allure.step('PATCH - change API user email')
     def patch(self, user) -> dict:
         url = f'{base_url}{user.id}'
         req_data = {
@@ -51,7 +51,7 @@ class GoRestApi:
 
         return response.json()
 
-    @allure.step('Get user #{user_id} info - GET')
+    @allure.step('GET - get API user #{user_id} state')
     def get(self, user_id) -> dict:
         url = f'{base_url}{user_id}'
         response = requests.get(url, headers=self.header)
@@ -59,7 +59,7 @@ class GoRestApi:
 
         return response.json()
 
-    @allure.step('Delete user #{user_id} record - DELETE')
+    @allure.step('DELETE - remove API user #{user_id} record')
     def delete(self, user_id) -> dict:
         url = f'{base_url}{user_id}'
         response = requests.delete(url, headers=self.header)
@@ -67,10 +67,10 @@ class GoRestApi:
 
         return response.json()
 
-    @allure.step('Get user #{user_id} name - GET')
+    @allure.step('GET - get API user #{user_id} name')
     def get_user_name(self, user_id) -> str:
         return self.get(user_id)['data']['name']
 
-    @allure.step('Get user #{user_id} email - GET')
+    @allure.step('GET - get API user #{user_id} email')
     def get_user_email(self, user_id) -> str:
         return self.get(user_id)['data']['email']
