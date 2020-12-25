@@ -21,10 +21,10 @@ Allure
 
 Docker
 ---
-run Pytest version:
+Pytest version:
 `docker run sen10rqa/api-tests`
 
-run Allure version:
+Allure version:
 `docker run -it -p 38077:38077 sen10rqa/api-tests-allure`
 
 >[Check Allure dashboard](http://localhost:38077/index.html)
