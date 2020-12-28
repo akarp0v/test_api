@@ -35,7 +35,7 @@ Allure version:
 
 [Allure version link](https://hub.docker.com/repository/docker/sen10rqa/api-tests-allure)
 
-**Build Docker container instruction:**
+**Docker container build instruction:**
 
 1. clone git repository: `git clone https://github.com/akarp0v/test_api.git`
 
