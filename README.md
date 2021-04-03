@@ -1,6 +1,16 @@
-### [REST API](https://gorest.co.in) test automation mini framework
+## [REST API](https://gorest.co.in) test automation mini framework
 
 > #### Python | Pytest | Allure | Docker
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install dependencies
+
+```
+pip install requirements.txt 
+```
+
+## Usage
 
 Test steps:
 1. POST request
@@ -8,24 +18,36 @@ Test steps:
 3. PATCH request
 4. DELETE request
 
-### Pytest
+Run Pytest version
 
-`pytest -v`
+```
+pytest -v
+```
 
-### Allure
+Run Allure version
 
-`pytest -v --alluredir=allure_reports/`
+```
+pytest -v --alluredir=allure_reports
+```
 
-`allure serve allure_reports/`
+```
+allure serve allure_reports
+```
 
 
-Docker
----
-Pytest version:
-`docker run sen10rqa/api-tests`
+## Docker
 
-Allure version:
-`docker run -it -p 38077:38077 sen10rqa/api-tests-allure`
+Run Pytest version
+
+```
+docker run sen10rqa/api-tests
+```
+
+Run Allure version
+
+```
+docker run -it -p 38077:38077 sen10rqa/api-tests-allure
+```
 
 >[Allure dashboard link](http://localhost:38077/index.html)
 
@@ -37,12 +59,14 @@ Allure version:
 
 **Docker container build instruction:**
 
-1. Clone git repository: `git clone https://github.com/akarp0v/test_api.git`
+1. Clone git repository `git clone https://github.com/akarp0v/test_api.git`
 
-2. Build image:
-`docker build -t api-tests-allure .`
+2. Build image `docker build -t api-tests-allure .`
 
-3. Run:
-`docker run -it -p 38077:38077 api-tests-allure`
+3. Run `docker run -it -p 38077:38077 api-tests-allure`
 
 4. Click [Allure dashboard link](http://localhost:38077/index.html)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
