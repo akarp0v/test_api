@@ -51,13 +51,13 @@ docker run -it -p 38077:38077 sen10rqa/api-tests-allure
 
 >[Allure dashboard link](http://localhost:38077/index.html)
 
-**Docker Hub repository:**
+**Docker Hub repository**
 
 [Pytest version link](https://hub.docker.com/repository/docker/sen10rqa/api-tests)
 
 [Allure version link](https://hub.docker.com/repository/docker/sen10rqa/api-tests-allure)
 
-**Docker container build instruction:**
+**Docker container build instruction**
 
 1. Clone git repository `git clone https://github.com/akarp0v/test_api.git`
 
