@@ -1,12 +1,10 @@
 import allure
 
-from gorest import GoRestApi
-from gorest import User
+from gorest import GoRestApi, User, GorestConst
 
 api = GoRestApi()
-user = User.info()
-test_name = "Put Request"
-test_email = "patch@request.api"
+user = User()
+gc = GorestConst()
 
 
 @allure.description("""
@@ -35,14 +33,14 @@ def test_post_request():
 @allure.step('PUT step')
 def test_put_request():
     with allure.step('Compare API user name and test name'):
-        assert api.get_user_name(user.id) != test_name
+        assert api.get_user_name(user.id) != gc.TEST_NAME
     with allure.step('Change local user name to test name'):
-        user.name = test_name
+        user.name = gc.TEST_NAME
     with allure.step('Send changed user state to API'):
         api.put_request(user)
 
     with allure.step('Compare test name and API user name'):
-        assert api.get_user_name(user.id) == test_name, "PUT test FAILED"
+        assert api.get_user_name(user.id) == gc.TEST_NAME, "PUT test FAILED"
 
 
 @allure.description("""
@@ -56,14 +54,14 @@ def test_put_request():
 @allure.step('PATCH step')
 def test_patch_request():
     with allure.step('Compare API user email with test email'):
-        assert api.get_user_email(user.id) != test_email
+        assert api.get_user_email(user.id) != gc.TEST_EMAIL
     with allure.step('Change local user email to test email'):
-        user.email = test_email
+        user.email = gc.TEST_EMAIL
     with allure.step('Send changed user state to API'):
         api.patch_request(user)
 
     with allure.step('Compare test email with API user email'):
-        assert api.get_user_email(user.id) == test_email, "PATCH test FAILED"
+        assert api.get_user_email(user.id) == gc.TEST_EMAIL, "PATCH test FAILED"
 
 
 @allure.description("""

@@ -4,12 +4,9 @@ gen = DocumentGenerator()
 
 
 class User:
-    id = ''
-    name = gen.name()
-    email = gen.email()
-    gender = "Male"
-    status = "Active"
-
-    @staticmethod
-    def info():
-        return User()
+    def __init__(self):
+        self.id = None
+        self.name = gen.name()
+        self.email = gen.email()
+        self.gender = "Male"
+        self.status = "Active"
