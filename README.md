@@ -1,4 +1,6 @@
-### Python [REST API](https://gorest.co.in) test automation framework
+### [REST API](https://gorest.co.in) test automation mini framework
+
+> #### Python | Pytest | Allure | Docker
 
 Test steps:
 1. POST request
@@ -6,13 +8,11 @@ Test steps:
 3. PATCH request
 4. DELETE request
 
-Pytest
----
+### Pytest
 
 `pytest -v`
 
-Allure
----
+### Allure
 
 `pytest -v --alluredir=allure_reports/`
 
@@ -37,12 +37,12 @@ Allure version:
 
 **Docker container build instruction:**
 
-1. clone git repository: `git clone https://github.com/akarp0v/test_api.git`
+1. Clone git repository: `git clone https://github.com/akarp0v/test_api.git`
 
-2. build image:
+2. Build image:
 `docker build -t api-tests-allure .`
 
-3. run:
+3. Run:
 `docker run -it -p 38077:38077 api-tests-allure`
 
->[Allure dashboard link](http://localhost:38077/index.html)
+4. Click [Allure dashboard link](http://localhost:38077/index.html)
