@@ -1,9 +1,7 @@
 import base64
 
-from .const import TOKEN_PATH
 
-
-def read_token(path: str = TOKEN_PATH) -> str:
+def read_token(path: str) -> str:
     with open(path) as file:
         token = file.readline().strip()
 

@@ -1,8 +1,7 @@
 import allure
 import requests
+import os
 
-from .token_reader import read_token
-from .const import GOREST_URL
 from .user import User
 
 
@@ -20,12 +19,12 @@ class GoRestApi:
         header = {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {read_token()}"
+            "Authorization": f"Bearer {os.environ.get('TOKEN')}"
         }
 
-        url = GOREST_URL
+        url = os.environ.get('GOREST_URL')
         if method not in (Methods.POST,):
-            url = f'{GOREST_URL}{user.id}'
+            url += f'{user.id}'
 
         payload = None
         if method not in (Methods.GET, Methods.DELETE):
