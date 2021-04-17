@@ -23,7 +23,7 @@ class GoRestApi:
         }
 
         url = os.environ.get('GOREST_URL')
-        if method not in (Methods.POST,):
+        if method != Methods.POST:
             url += f'{user.id}'
 
         payload = None
