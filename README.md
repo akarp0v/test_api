@@ -23,6 +23,9 @@ Run Pytest version
 ```
 pytest -v
 ```
+```
+pytest -vs
+```
 
 Run Allure version
 
