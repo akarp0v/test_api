@@ -1,10 +1,10 @@
+from essential_generators import DocumentGenerator as Gen
 import os
 
 
-class GorestConst:
-    GOREST_URL = os.environ.get('GOREST_URL', 'https://gorest.co.in/public-api/users/')
+GOREST_URL = os.environ.get('GOREST_URL', 'https://gorest.co.in/public-api/users/')
 
-    TOKEN_PATH = 'gorest/token.txt'
+TOKEN_PATH = 'gorest/data/token.txt'
 
-    TEST_NAME = "Put Request"
-    TEST_EMAIL = "patch@request.api"
+TEST_NAME = f'test-{Gen().name()}'
+TEST_EMAIL = f'test-{Gen().email()}'

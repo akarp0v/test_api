@@ -1,3 +1,3 @@
 from gorest.api import GoRestApi
-from gorest.user_generator import User
-from gorest.const import GorestConst
+from gorest.user import User
+from gorest.const import TEST_NAME, TEST_EMAIL

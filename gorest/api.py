@@ -1,78 +1,80 @@
 import allure
 import requests
 
-import gorest.header_composer as h
-from .const import GorestConst
-from .user_generator import User
+from .token_reader import read_token
+from .const import GOREST_URL
+from .user import User
 
-gc = GorestConst()
+
+class Methods:
+    GET: str = 'GET'
+    POST: str = 'POST'
+    PUT: str = 'PUT'
+    PATCH: str = 'PATCH'
+    DELETE: str = 'DELETE'
 
 
 class GoRestApi:
-    header = h.get_header()
+    @staticmethod
+    def _perform_request(method: str, user: User) -> requests.Response:
+        header = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {read_token()}"
+        }
+
+        url = GOREST_URL
+        if method not in (Methods.POST,):
+            url = f'{GOREST_URL}{user.id}'
+
+        payload = None
+        if method not in (Methods.GET, Methods.DELETE):
+            payload = {
+                "name": user.name,
+                "email": user.email,
+                "gender": user.gender,
+                "status": user.status
+            }
+
+        response = requests.request(method=method, url=url, headers=header, json=payload)
+        assert response.ok
+
+        return response
 
     @allure.step
     def post_request(self, user: User) -> int:
-        url = gc.GOREST_URL
-        payload = {
-            "name": user.name,
-            "email": user.email,
-            "gender": user.gender,
-            "status": user.status
-        }
-        response = requests.post(url, headers=self.header, json=payload)
-        assert response.ok
+        response = self._perform_request(Methods.POST, user)
 
         return response.json()['data']['id']
 
     @allure.step
     def put_request(self, user: User) -> dict:
-        url = f'{gc.GOREST_URL}{user.id}'
-        payload = {
-            "name": user.name,
-            "email": user.email,
-            "gender": user.gender,
-            "status": user.status
-        }
-        response = requests.put(url, headers=self.header, json=payload)
-        assert response.ok
+        response = self._perform_request(Methods.PUT, user)
 
         return response.json()
 
     @allure.step
     def patch_request(self, user: User) -> dict:
-        url = f'{gc.GOREST_URL}{user.id}'
-        payload = {
-            "name": user.name,
-            "email": user.email,
-            "gender": user.gender,
-            "status": user.status
-        }
-        response = requests.patch(url, headers=self.header, json=payload)
-        assert response.ok
+        response = self._perform_request(Methods.PATCH, user)
 
         return response.json()
 
     @allure.step
-    def get_request(self, user_id: int) -> dict:
-        url = f'{gc.GOREST_URL}{user_id}'
-        response = requests.get(url, headers=self.header)
-        assert response.ok
+    def get_request(self, user: User) -> dict:
+        response = self._perform_request(Methods.GET, user)
 
         return response.json()
 
     @allure.step
-    def delete_request(self, user_id: int) -> dict:
-        url = f'{gc.GOREST_URL}{user_id}'
-        response = requests.delete(url, headers=self.header)
-        assert response.ok
+    def delete_request(self, user: User) -> dict:
+        response = self._perform_request(Methods.DELETE, user)
 
         return response.json()
 
     @allure.step
-    def get_user_name(self, user_id: int) -> str:
-        return self.get_request(user_id)['data']['name']
+    def get_user_name(self, user: User) -> str:
+        return self.get_request(user)['data']['name']
 
     @allure.step
-    def get_user_email(self, user_id: int) -> str:
-        return self.get_request(user_id)['data']['email']
+    def get_user_email(self, user: User) -> str:
+        return self.get_request(user)['data']['email']
