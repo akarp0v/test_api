@@ -1,7 +1,7 @@
 from essential_generators import DocumentGenerator as Gen
 import os
 
-from .reader import read_token
+from .token_reader import read_token
 
 
 GOREST_URL = os.environ.setdefault('GOREST_URL', 'https://gorest.co.in/public-api/users/')

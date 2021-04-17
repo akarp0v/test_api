@@ -1,4 +1,5 @@
 from essential_generators import DocumentGenerator as Gen
+from random import choice
 
 
 class User:
@@ -6,5 +7,5 @@ class User:
         self.id = None
         self.name = Gen().name()
         self.email = Gen().email()
-        self.gender = "Male"
+        self.gender = choice(["Male", "Female"])
         self.status = "Active"
