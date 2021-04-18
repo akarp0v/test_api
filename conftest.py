@@ -4,10 +4,10 @@ from gorest import GoRestApi, User
 
 
 @pytest.fixture(scope='session')
-def gorest_api():
+def conduct_api():
     user = User()
     api = GoRestApi(user)
 
-    yield api
+    yield api, user
 
-    del api, user
+    del user, api

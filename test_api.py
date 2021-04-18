@@ -10,15 +10,15 @@ from gorest import TEST_NAME, TEST_EMAIL
 2. Compare local user email with API email &rarr; expect True
 """)
 @allure.step('POST step')
-def test_post_request(gorest_api):
+def test_post_request(conduct_api):
     with allure.step('POST local user to API'):
-        api = gorest_api
+        api, user = conduct_api
         response = api.post_user()
-        api.user.id = response.json()['data']['id']
+        user.id = response.json()['data']['id']
 
     with allure.step('Compare local user email with API email'):
         response = api.get_user()
-        assert response.json()['data']['email'] == api.user.email, "POST test FAILED"
+        assert response.json()['data']['email'] == user.email, "POST test FAILED"
 
 
 @allure.description("""
@@ -30,13 +30,12 @@ def test_post_request(gorest_api):
 4. Compare test name with API user name &rarr; expect True
 """)
 @allure.step('PUT step')
-def test_put_request(gorest_api):
-    with allure.step('Compare API user name and test name'):
-        api = gorest_api
-        response = api.get_user()
-        assert response.json()['data']['name'] != TEST_NAME
+def test_put_request(conduct_api):
+    with allure.step('Compare user name and test name'):
+        api, user = conduct_api
+        assert user.name != TEST_NAME
     with allure.step('Change local user name to test name'):
-        api.user.name = TEST_NAME
+        user.name = TEST_NAME
     with allure.step('Send changed user state to API'):
         api.put_user()
 
@@ -54,13 +53,12 @@ def test_put_request(gorest_api):
 4. Compare test email with API user email &rarr; expect True
 """)
 @allure.step('PATCH step')
-def test_patch_request(gorest_api):
-    with allure.step('Compare API user email with test email'):
-        api = gorest_api
-        response = api.get_user()
-        assert response.json()['data']['email'] != TEST_EMAIL
+def test_patch_request(conduct_api):
+    with allure.step('Compare user email with test email'):
+        api, user = conduct_api
+        assert user.email != TEST_EMAIL
     with allure.step('Change local user email to test email'):
-        api.user.email = TEST_EMAIL
+        user.email = TEST_EMAIL
     with allure.step('Send changed user state to API'):
         api.patch_user()
 
@@ -76,9 +74,9 @@ def test_patch_request(gorest_api):
 2. Check is user deleted &rarr; expect True
 """)
 @allure.step('DELETE step')
-def test_delete_request(gorest_api):
+def test_delete_request(conduct_api):
     with allure.step('Delete user record'):
-        api = gorest_api
+        api, user = conduct_api
         response = api.delete_user()
         assert response.json()['code'] == 204
 

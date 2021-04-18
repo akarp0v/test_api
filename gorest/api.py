@@ -15,27 +15,27 @@ class Methods:
 
 class GoRestApi:
     def __init__(self, user: User):
-        self.user = user
-        self.token = os.environ.get('TOKEN')
+        self._user = user
+        self._token = os.environ.get('TOKEN')
 
     def _perform_request(self, method: str) -> requests.Response:
         header = {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {self.token}"
+            "Authorization": f"Bearer {self._token}"
         }
 
         url = os.environ.get('GOREST_URL')
         if method != Methods.POST:
-            url += f'{self.user.id}'
+            url += f'{self._user.id}'
 
         payload = None
         if method not in (Methods.GET, Methods.DELETE):
             payload = {
-                "name": self.user.name,
-                "email": self.user.email,
-                "gender": self.user.gender,
-                "status": self.user.status
+                "name": self._user.name,
+                "email": self._user.email,
+                "gender": self._user.gender,
+                "status": self._user.status
             }
 
         response = requests.request(method=method, url=url, headers=header, json=payload)
