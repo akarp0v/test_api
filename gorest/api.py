@@ -18,24 +18,32 @@ class GoRestApi:
         self._user = user
         self._token = os.environ.get('TOKEN')
 
+    @property
+    def user(self):
+        return self._user
+
+    @property
+    def token(self):
+        return self._token
+
     def _perform_request(self, method: str) -> Response:
         header = {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {self._token}"
+            "Authorization": f"Bearer {self.token}"
         }
 
         url = os.environ.get('GOREST_URL')
         if method != Methods.POST:
-            url += f'{self._user.id}'
+            url += f'{self.user.id}'
 
         payload = None
         if method not in (Methods.GET, Methods.DELETE):
             payload = {
-                "name": self._user.name,
-                "email": self._user.email,
-                "gender": self._user.gender,
-                "status": self._user.status
+                "name": self.user.name,
+                "email": self.user.email,
+                "gender": self.user.gender,
+                "status": self.user.status
             }
 
         response = request(method=method, url=url, headers=header, json=payload)
