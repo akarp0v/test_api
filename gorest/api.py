@@ -16,11 +16,16 @@ class Methods:
 class GoRestApi:
     def __init__(self, user: User):
         self._user = user
+        self._url = os.environ.get('GOREST_URL')
         self._token = os.environ.get('TOKEN')
 
     @property
     def user(self):
         return self._user
+
+    @property
+    def url(self):
+        return self._url
 
     @property
     def token(self):
@@ -33,7 +38,7 @@ class GoRestApi:
             "Authorization": f"Bearer {self.token}"
         }
 
-        url = os.environ.get('GOREST_URL')
+        url = self.url
         if method != Methods.POST:
             url += f'{self.user.id}'
 
