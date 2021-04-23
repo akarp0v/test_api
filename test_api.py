@@ -9,15 +9,14 @@ from gorest import TEST_NAME, TEST_EMAIL
 1. POST local user to API<br>
 2. Compare local user email with API email &rarr; expect True
 """)
-@allure.step('POST step')
 def test_post_request(conduct_api):
     with allure.step('POST local user to API'):
         api, user = conduct_api
         response = api.post_user()
         user.id = response.json()['data']['id']
-
-    with allure.step('Compare local user email with API email'):
+    with allure.step('Try to get user record'):
         response = api.get_user()
+    with allure.step('Compare local user email with API email'):
         assert response.json()['data']['email'] == user.email, "POST test FAILED"
 
 
@@ -29,7 +28,6 @@ def test_post_request(conduct_api):
 3. Send changed user state to API<br>
 4. Compare test name with API user name &rarr; expect True
 """)
-@allure.step('PUT step')
 def test_put_request(conduct_api):
     with allure.step('Compare user name and test name'):
         api, user = conduct_api
@@ -38,9 +36,9 @@ def test_put_request(conduct_api):
         user.name = TEST_NAME
     with allure.step('Send changed user state to API'):
         api.put_user()
-
-    with allure.step('Compare test name and API user name'):
+    with allure.step('Try to get user record'):
         response = api.get_user()
+    with allure.step('Compare test name and API user name'):
         assert response.json()['data']['name'] == TEST_NAME, "PUT test FAILED"
 
 
@@ -52,7 +50,6 @@ def test_put_request(conduct_api):
 3. Send changed user state to API<br>
 4. Compare test email with API user email &rarr; expect True
 """)
-@allure.step('PATCH step')
 def test_patch_request(conduct_api):
     with allure.step('Compare user email with test email'):
         api, user = conduct_api
@@ -61,9 +58,9 @@ def test_patch_request(conduct_api):
         user.email = TEST_EMAIL
     with allure.step('Send changed user state to API'):
         api.patch_user()
-
-    with allure.step('Compare test email with API user email'):
+    with allure.step('Try to get user record'):
         response = api.get_user()
+    with allure.step('Compare test email with API user email'):
         assert response.json()['data']['email'] == TEST_EMAIL, "PATCH test FAILED"
 
 
@@ -73,13 +70,12 @@ def test_patch_request(conduct_api):
 1. Delete user record<br>
 2. Check is user deleted &rarr; expect True
 """)
-@allure.step('DELETE step')
 def test_delete_request(conduct_api):
     with allure.step('Delete user record'):
         api, user = conduct_api
         response = api.delete_user()
         assert response.json()['code'] == 204
-
-    with allure.step('Check is user deleted'):
+    with allure.step('Try to get user record'):
         response = api.get_user()
+    with allure.step('Verify is user deleted'):
         assert response.json()['code'] == 404, "DELETE test FAILED"
