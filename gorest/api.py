@@ -1,6 +1,6 @@
 import allure
-import requests
 import os
+from requests import request, Response
 
 from .user import User
 
@@ -18,7 +18,7 @@ class GoRestApi:
         self._user = user
         self._token = os.environ.get('TOKEN')
 
-    def _perform_request(self, method: str) -> requests.Response:
+    def _perform_request(self, method: str) -> Response:
         header = {
             "Accept": "application/json",
             "Content-Type": "application/json",
@@ -38,37 +38,37 @@ class GoRestApi:
                 "status": self._user.status
             }
 
-        response = requests.request(method=method, url=url, headers=header, json=payload)
+        response = request(method=method, url=url, headers=header, json=payload)
         assert response.ok, response.content.decode()
 
         return response
 
     @allure.step
-    def post_user(self) -> requests.Response:
+    def post_user(self) -> Response:
         response = self._perform_request(Methods.POST)
 
         return response
 
     @allure.step
-    def put_user(self) -> requests.Response:
+    def put_user(self) -> Response:
         response = self._perform_request(Methods.PUT)
 
         return response
 
     @allure.step
-    def patch_user(self) -> requests.Response:
+    def patch_user(self) -> Response:
         response = self._perform_request(Methods.PATCH)
 
         return response
 
     @allure.step
-    def get_user(self) -> requests.Response:
+    def get_user(self) -> Response:
         response = self._perform_request(Methods.GET)
 
         return response
 
     @allure.step
-    def delete_user(self) -> requests.Response:
+    def delete_user(self) -> Response:
         response = self._perform_request(Methods.DELETE)
 
         return response
