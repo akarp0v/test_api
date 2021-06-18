@@ -9,9 +9,9 @@ from gorest import TEST_NAME, TEST_EMAIL
 1. POST local user to API<br>
 2. Compare local user email with API email &rarr; expect True
 """)
-def test_post_request(conduct_api):
-    with allure.step('POST local user to API'):
-        api, user = conduct_api
+def test_post_request(api):
+    with allure.step('POST local user to remote API'):
+        api, user = api
         response = api.post_user()
         user.id = response.json()['data']['id']
     with allure.step('Try to get user record'):
@@ -28,9 +28,9 @@ def test_post_request(conduct_api):
 3. Send changed user state to API<br>
 4. Compare test name with API user name &rarr; expect True
 """)
-def test_put_request(conduct_api):
+def test_put_request(api):
     with allure.step('Compare user name and test name'):
-        api, user = conduct_api
+        api, user = api
         assert user.name != TEST_NAME
     with allure.step('Change local user name to test name'):
         user.name = TEST_NAME
@@ -50,9 +50,9 @@ def test_put_request(conduct_api):
 3. Send changed user state to API<br>
 4. Compare test email with API user email &rarr; expect True
 """)
-def test_patch_request(conduct_api):
+def test_patch_request(api):
     with allure.step('Compare user email with test email'):
-        api, user = conduct_api
+        api, user = api
         assert user.email != TEST_EMAIL
     with allure.step('Change local user email to test email'):
         user.email = TEST_EMAIL
@@ -70,9 +70,9 @@ def test_patch_request(conduct_api):
 1. Delete user record<br>
 2. Check is user deleted &rarr; expect True
 """)
-def test_delete_request(conduct_api):
+def test_delete_request(api):
     with allure.step('Delete user record'):
-        api, user = conduct_api
+        api, user = api
         response = api.delete_user()
         assert response.json()['code'] == 204
     with allure.step('Try to get user record'):

@@ -1,10 +1,10 @@
-import pytest
+from pytest import fixture
 
 from gorest import GoRestApi, User
 
 
-@pytest.fixture(scope='session')
-def conduct_api():
+@fixture(scope='session')
+def api():
     user = User()
     api = GoRestApi(user)
 
